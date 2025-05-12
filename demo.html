@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Surprise!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ffccff, #ffe6e6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #ff1493;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 3em;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+      animation-delay: 1s;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff69b4;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff1493;
+      box-shadow: 0 0 30px #ff1493;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      top: -30px;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Click the Button for a Surprise! 🎁</h1>
+  <button onclick="startSurprise()">Open Surprise</button>
+
+  <script>
+    function startSurprise() {
+      document.body.style.background = "linear-gradient(to top left, #ffb6c1, #ffe4e1)";
+      document.querySelector('h1').innerHTML = "🎂 Happy Birthday Vidya! 🎉";
+      document.querySelector('button').style.display = "none";
+
+      let message = document.createElement('p');
+      message.innerHTML = "Wishing you lots of <b>Love ❤️, Cake 🎂, and Happiness ✨</b>!";
+      document.body.appendChild(message);
+
+      // Confetti (using emojis like balloons, hearts, cakes)
+      const emojis = ['🎈', '🎂', '❤️', '✨', '🎉', '🥳'];
+      for (let i = 0; i < 80; i++) {
+        let confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        document.body.appendChild(confetti);
+      }
+
+      // Play custom "Happy Birthday Vidya" audio
+      let audio = new Audio('happy-birthday-vidya.mp3'); // Tumhari custom audio
+      audio.play();
+    }
+  </script>
+
+</body>
+
+</html>
